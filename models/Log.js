@@ -1,23 +1,19 @@
 const mongoose = require("mongoose");
 
-const PostSchema = new mongoose.Schema({
-  title: {
+const LogSchema = new mongoose.Schema({
+  habit: {
     type: String,
     required: true,
   },
-  image: {
+  icon: {
     type: String,
     require: true,
   },
-  cloudinaryId: {
-    type: String,
-    require: true,
-  },
-  caption: {
+  unit: {
     type: String,
     required: true,
   },
-  likes: {
+  progress: {
     type: Number,
     required: true,
   },
@@ -32,4 +28,4 @@ const PostSchema = new mongoose.Schema({
 });
 
 //MongoDB Collection named here - will give lowercase plural of name 
-module.exports = mongoose.model("Post", PostSchema);
+module.exports = mongoose.model("Log", LogSchema);
