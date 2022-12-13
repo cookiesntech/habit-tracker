@@ -3,39 +3,63 @@
   <div class="row mt-5">
       <div class="col-6">
           <div>
-              <p><strong>User Name</strong>: <%= user.userName %></p>
-              <p><strong>Email</strong>: <%= user.email %></p>
               <a href="/logout" class="col-3 btn btn-primary">Logout</a>
           </div>
           <div class="mt-5">
-            <h2>Add a post</h2>
-            <form action="/logs/createLog" enctype="multipart/form-data" method="POST">
+            <h1><%= user.userName %>'s Daily Habit Tracker</h1>
+            <form action="/dashboard/createHabit" method="POST">
               <div class="mb-3">
-                  <label for="title" class="form-label">Title</label>
-                  <input type="text" class="form-control" id="title" name="title">
+                  <input type="text" class="form-control" id="icon" name="icon" placeholder="icon">
               </div>
               <div class="mb-3">
-                <label for="caption" class="form-label">Caption</label>
-                <textarea class="form-control" id="caption" name="caption"></textarea>
+                <input type="text" class="form-control" id="habit" name="habit" placeholder="habit">
               </div>
               <div class="mb-3">
-                <label for="imgUpload" class="form-label">Image</label>
-                <input type="file" class="form-control" id="imageUpload" name="file">
+                <input type="number" class="form-control" id="increment" name="increment" placeholder="increment">
               </div>
-              <button type="submit" class="btn btn-primary" value="Upload">Submit</button>
+            <div class="mb-3">
+              <input type="text" class="form-control" id="unit" name="unit" placeholder="unit">
+            </div>
+              <button type="submit" class="btn btn-primary">Track</button>
             </form>
           </div>
       </div>
+      <h2>Your habits</h2>
       <div class="col-6">
         <ul class="row list-unstyled">
-        <% for(var i=0; i<logs.length; i++) {%>
+        <% habits.forEach(habit =>  { %>
           <li class="col-6 justify-content-between mt-5">
-            <a href="/logs/<%= logs[i]._id%>">
-              <h2><%= logs[i].title%></h2>
-              <img class="img-fluid" src="<%= logs[i].image%>">
-            </a>
+            <span><%= habit.icon%></span>
+            <span><%= habit.habit%></span>
+            <span>
+              <form
+                class="col-1"
+                action="/dashboard/increment/<%= habit.id %>?_method=PUT"
+                method="POST"
+              >
+                <button class="btn btn-primary" type="submit">+</button>
+              </form>
+              <%= habit.progress%>
+              <form
+                class="col-1"
+                action="/dashboard/decrement/<%= habit.id %>?_method=PUT"
+                method="POST"
+              >
+              <button class="btn btn-primary" type="submit">-</button>
+            </form>
+            </span>
+            <span><%= habit.unit%></span>
+            <span>
+              <form
+              action="/dashboard/deleteHabit/<%= habit.id %>?_method=DELETE"
+              method="POST"
+              class="col-3"
+              >
+             <button class="btn btn-primary fa fa-trash" type="submit"></button>
+            </form>
+            </span>
           </li>
-        <% } %>
+        <% }) %>
         </ul>
 
       </div>  
