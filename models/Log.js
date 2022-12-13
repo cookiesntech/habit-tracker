@@ -1,21 +1,21 @@
-// const mongoose = require("mongoose");
+const mongoose = require("mongoose");
 
-// const LogSchema = new mongoose.Schema({
-//   habits: [{
-//     habit: String,
-//     icon: String,
-//     unit: String,
-//     progress: Number,
-//   }],
-//   user: {
-//     type: mongoose.Schema.Types.ObjectId,
-//     ref: "User",
-//   },
-//   date: {
-//     type: Date,
-//     default: Date.now,
-//   },
-// });
+const LogSchema = new mongoose.Schema({
+  habits: [{
+    habit: String,
+    icon: String,
+    unit: String,
+    progress: Number,
+  }],
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+  },
+  date: {
+    type: Date,
+    default: Date.now,
+  },
+});
 
-// //MongoDB Collection named here - will give lowercase plural of name 
-// module.exports = mongoose.model("Log", LogSchema);
+//MongoDB Collection named here - will give lowercase plural of name 
+module.exports = mongoose.model("Log", LogSchema);

@@ -29,6 +29,7 @@
         <ul class="row list-unstyled">
         <% habits.forEach(habit =>  { %>
           <li class="col-6 justify-content-between mt-5">
+            <div>
             <span><%= habit.icon%></span>
             <span><%= habit.habit%></span>
             <span>
@@ -58,6 +59,7 @@
              <button class="btn btn-primary fa fa-trash" type="submit"></button>
             </form>
             </span>
+          </div>
           </li>
         <% }) %>
         </ul>
