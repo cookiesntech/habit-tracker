@@ -3,18 +3,23 @@
   <div class="row justify-content-center mt-5">
 
     <h1>Past Daily Logs</h1>
+    <form action="/logs/createLog" method="POST">
+        <button class="btn btn-primary" type="submit">create log test</button>
+    </form>
     <ul class="row list-unstyled">
-      <% logs.forEach(log =>  { %>
+      <% for (let i = 0; i < logs.length; i++) { %>
         <li class="col-6 justify-content-between mt-5">
           <div>
-          <span><h2><%= log.date %></h2></span>
-          <span><%= log.habits.icon%></span>
-          <span><%= log.habits.habit%></span>
-          <span><%= log.habits.progress%></span>
-          <span><%= log.habits.unit%></span>
+          <span><h2><%= logs[i].date %></h2></span>
+          <% for (let j = 0; j < logs[i].habits.length; j ++) { %>
+          <span><%= logs[i].habits[j].icon %></span>
+          <span><%= logs[i].habits[j].habit %></span>
+          <span><%= logs[i].habits[j].progress %></span>
+          <span><%= logs[i].habits[j].unit %></span>
+          <% } %>
           <span>
             <form
-            action="/logs/deleteLog/<%= log.id %>?_method=DELETE"
+            action="/logs/deleteLog/<%= logs.id %>?_method=DELETE"
             method="POST"
             class="col-3"
             >
@@ -23,7 +28,7 @@
           </span>
         </div>
         </li>
-      <% }) %>
+      <% } %>
       </ul>
 
     <div class="col-6 mt-5">
