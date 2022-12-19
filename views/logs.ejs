@@ -3,9 +3,6 @@
   <div class="row justify-content-center mt-5">
 
     <h1>Past Daily Logs</h1>
-    <form action="/logs/createLog" method="POST">
-        <button class="btn btn-primary" type="submit">create log test</button>
-    </form>
     <ul class="row list-unstyled">
       <% for (let i = 0; i < logs.length; i++) { %>
         <li class="col-6 justify-content-between mt-5">
@@ -19,7 +16,7 @@
           <% } %>
           <span>
             <form
-            action="/logs/deleteLog/<%= logs.id %>?_method=DELETE"
+            action="/logs/deleteLog/<%= logs[i]._id %>?_method=DELETE"
             method="POST"
             class="col-3"
             >

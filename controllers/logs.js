@@ -1,15 +1,16 @@
 //const cloudinary = require("../middleware/cloudinary");
 const Log = require("../models/Log");
 const Habit = require("../models/Habit");
-
+const User = require("../models/User");
 
 module.exports = {
+  
   getLog: async (req, res) => {
     try {
         const userId = req.user.id;
         const logs = await Log.find({user: userId}).lean();
-        console.log(logs.habits)
-        console.log(logs[0].habits)
+        console.log(logs)
+        console.log(logs[0].habits[0].habit)
         res.render("logs.ejs", { logs: logs, user: req.user});
     } catch (err) {
       console.log(err);
@@ -17,17 +18,15 @@ module.exports = {
   },
   createLog: async (req, res) => {
     try {
-
-        const dailyHabits = await Habit.find({user: req.user.id})
-        console.log(dailyHabits);
-        const date = new Date;
-        await Log.create({
-          habits: dailyHabits,
-          date: date,
-          user: req.user.id
-        });
-      
-      res.redirect("/logs");
+        for await (const user of User.find()) {
+          const dailyHabits = await Habit.find({user: user._id});
+          const date = new Date;
+          await Log.create({
+            habits: dailyHabits,
+            date: date,
+            user: user._id
+          })
+        }
     } catch (err) {
       console.log(err);
     }

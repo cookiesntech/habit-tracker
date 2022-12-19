@@ -10,8 +10,13 @@ const logger = require("morgan");
 const connectDB = require("./config/database");
 const mainRoutes = require("./routes/main");
 const logsRoutes = require("./routes/logs");
-const dashboardRoutes = require("./routes/dashboard")
+const dashboardRoutes = require("./routes/dashboard");
+const logsController = require('./controllers/logs')
+const cron = require("node-cron");
 
+cron.schedule("59 59 23 * * *", () => {
+  logsController.createLog(); 
+});
 //Use .env file in config folder
 require("dotenv").config({ path: "./config/.env" });
 
