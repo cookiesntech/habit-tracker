@@ -1,0 +1,71 @@
+@font-face {
+    font-family: 'Quicksand';
+    src: url(Quicksand/static/Quicksand-Regular.ttf) format('truetype'), url(Quicksand/static/Quicksand-Bold.ttf);
+  }
+  html {
+    font-size: 100%;
+  } /*16px*/
+:root {
+  /* primary */
+  --peach: #FF7B54;
+  --light-peach: #FFB268;
+  --lime: #D5E155;
+  --golden: #FFC700;
+  --mudgreen: #939b62;
+
+
+  /* grey */
+  --black: #222;
+  --white: #fff;
+  --offwhite: #F0F1F1;
+  --deep-grey: #65656C;
+  --grey: #2D3652;
+  --light-grey: #E0E2E2;
+
+}
+
+  body {
+    background: white;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 400;
+    line-height: 1.75;
+    color: #000000;
+    text-decoration: none;
+  }
+  
+  p {margin-bottom: 1rem;}
+  
+  h1, h2, h3, h4, h5 {
+    margin: 3rem 0 1.38rem;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 400;
+    line-height: 1.3;
+  }
+  
+  h1 {
+    margin-top: 0;
+    font-size: 2.488rem;
+  }
+  
+  h2 {font-size: 2.074rem;}
+  
+  h3 {font-size: 1.728rem;}
+  
+  h4 {font-size: 1.44rem;}
+  
+  h5 {font-size: 1.2rem;}
+  
+  small, 
+  .text_small {
+    font-size: 0.833rem
+  }
+
+.title-bold {
+    font-weight: 700;
+}
+
+.container {
+  border: 2px solid black;
+  margin-top: 10rem;
+  margin-left: 2rem;
+}
